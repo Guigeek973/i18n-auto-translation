@@ -13,11 +13,6 @@ export class DeepLFreeAPI extends Translate {
     },
     responseType: 'json',
   };
-  private static readonly customSkipWordRegex: RegExp = /({{([^{}]+)}}|\{([^{}]+)\})/g;
-
-  protected getSkipWordRegex(): RegExp {
-    return DeepLFreeAPI.customSkipWordRegex;
-  }
 
   constructor() {
     super();
@@ -40,6 +35,6 @@ export class DeepLFreeAPI extends Translate {
       },
       DeepLFreeAPI.axiosConfig,
     );
-    return decode((response as DeepLTranslateResponse).data.translations[0].text);
+    return (response as DeepLTranslateResponse).data.translations[0].text;
   };
 }
